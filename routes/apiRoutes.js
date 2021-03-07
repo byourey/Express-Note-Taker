@@ -6,13 +6,12 @@ const uuid = require("uuid");
 
 
 // Get Data
-router.get("/api/notes", async (req, res) => {
-    try {
-        res.json(dbData);
-
-    } catch (err) {
-        res.status(500).end();
-     }
+router.get('/api/notes', (req, res) => {
+    fs.readFile('./db/db.json', (err, data) => {
+        if (err) throw err;
+        const newNotes = JSON.parse(data);
+        res.json(newNotes);
+    });
 });
 
 // Creating a new note
