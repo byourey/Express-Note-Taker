@@ -1,14 +1,14 @@
 const router = require("express").Router();
 const fs = require("fs");
-const datadb = require("../db/db.json");
+const dbData = require("../db/db.json");
 
 const uuid = require("uuid");
 
 
-// Get dbData
+// Get Data
 router.get("/api/notes", async (req, res) => {
     try {
-        res.json(datadb);
+        res.json(dbData);
 
     } catch (err) {
         res.status(500).end();
@@ -17,22 +17,21 @@ router.get("/api/notes", async (req, res) => {
 
 // Creating a new note
 router.post('/api/notes', (req, res) => {
-    let newNoteId = uuid.v4();
     let newNote = {
-        id: newNoteId,
+        id: uuid4(),
         title: req.body.title,
         text: req.body.text
 
     };
 
-    fs.readFile('../db/db.json', (err, data) => {
+    fs.readFile('./db/db.json', (err, data) => {
         if (err) throw err;
         const getNewNotes = JSON.parse(data);
         getNewNotes.push(newNote);
 
-        fs.writeFile('../db/db.json', JSON.stringify(getNewNotes), err => {
+        fs.writeFile('./db/db.json', JSON.stringify(getNewNotes), err => {
             if (err) throw err;
-            res.send(datadb)
+            res.send(dbData)
         });
     });
 });
