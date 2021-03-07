@@ -18,3 +18,4 @@
 * HTML & CSS
 
 ## Website
+![Image of website](https://github.com/byourey/Express-Note-Taker/blob/main/public/note-taker.jpg)
