@@ -25,12 +25,12 @@ router.post('/api/notes', (req, res) => {
 
     };
 
-    fs.readFile('./db/db.json', (err, data) => {
+    fs.readFile('../db/db.json', (err, data) => {
         if (err) throw err;
         const getNewNotes = JSON.parse(data);
         getNewNotes.push(newNote);
 
-        fs.writeFile('./db/db.json', JSON.stringify(getNewNotes), err => {
+        fs.writeFile('../db/db.json', JSON.stringify(getNewNotes), err => {
             if (err) throw err;
             res.send(datadb)
         });
