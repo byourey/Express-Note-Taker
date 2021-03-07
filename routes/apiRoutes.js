@@ -9,8 +9,8 @@ const uuid = require("uuid");
 router.get('/api/notes', (req, res) => {
     fs.readFile('./db/db.json', (err, data) => {
         if (err) throw err;
-        const newNotes = JSON.parse(data);
-        res.json(newNotes);
+        const parsedNotes = JSON.parse(data);
+        res.json(parsedNotes);
     });
 });
 
